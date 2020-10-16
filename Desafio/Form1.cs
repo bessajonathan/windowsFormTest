@@ -12,6 +12,8 @@ namespace Desafio
         public Form1()
         {
             InitializeComponent();
+            var userService = new UserService();
+            userService.ExecuteMigration();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -21,9 +23,12 @@ namespace Desafio
 
         private void btnConsumirApi_Click(object sender, EventArgs e)
         {
+            var userService = new UserService();
             var consumer = new Consumer();
             consumer.GetUsersFromApi();
             MessageBox.Show("Dados Carregados com Sucesso");
+            var lstUsers = userService.GetAllUsers();
+            dataGridView1.DataSource = lstUsers.ToList();
         }
 
         private void btnFiltrar_Click(object sender, EventArgs e)
@@ -33,7 +38,7 @@ namespace Desafio
 
             var userService = new UserService();
 
-            if (userService.GetAllUsers().Count() == 0)
+            if (!userService.VerifyPopulation())
             {
                 MessageBox.Show("Clique em Consumir Api para Buscar os dados");
                 return;

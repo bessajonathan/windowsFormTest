@@ -10,38 +10,67 @@ namespace Desafio.Services
 {
     public class UserService
     {
-        private readonly Context context;
+
         private readonly Hash hashService;
+        private readonly UserRepository userRepository;
+
+      
+
         public UserService()
         {
-            context = new Context();
             hashService = new Hash();
+            userRepository = new UserRepository();
+        }
+
+        public void ExecuteMigration()
+        {
+            userRepository.ExecuteMigration();
         }
         public IEnumerable<UserViewModel> GetAllUsers()
         {
 
-            return context.GetAllUsers();
+            var data = userRepository.GetAllUsers();
+
+            return data.Select(x => new UserViewModel
+            {
+                Id = int.Parse(x.Id),
+                Nome = x.Name,
+                Empresa = x.Company,
+                Hash = x.Hash,
+                HashDecrip = x.HashDecrip
+            }).ToList();
+        }
+
+        public bool VerifyPopulation()
+        {
+            return userRepository.VerifyPopulation();
         }
 
         public IEnumerable<UserViewModel> SearchUsers(string user, string company)
         {
-
-            var lstUsers = context.GetAllUsers();
+            var data = userRepository.GetAllUsers();
 
             if (!string.IsNullOrEmpty(user))
             {
-                lstUsers = lstUsers.Where(x => x.Nome.ToUpper() == user.ToUpper());
+                data = data.Where(x => x.Name.ToUpper() == user.ToUpper());
             }
 
             if (!string.IsNullOrEmpty(company))
             {
-                lstUsers = lstUsers.Where(x => x.Empresa.ToUpper() == company.ToUpper());
+                data = data.Where(x => x.Company.ToUpper() == company.ToUpper());
             }
 
-            return lstUsers;
+            return data.Select(x => new UserViewModel
+            {
+                Id = int.Parse(x.Id),
+                Nome = x.Name,
+                Empresa = x.Company,
+                Hash = x.Hash,
+                HashDecrip = x.HashDecrip
+            }).ToList();
         }
 
-        public  void PopulationTableUsers(UsersList dataFromApi)
+        public void PopulationTableUsers(UsersList dataFromApi)
         {
             dataFromApi.Users.ForEach(x =>
             {
@@ -50,8 +79,8 @@ namespace Desafio.Services
                 var decript = Encoding.UTF8.GetString(Convert.FromBase64String(hash));
                 x.HashDecrip = decript;
             });
-          
-            context.PopulationTableUsers(dataFromApi.Users);
+
+            userRepository.PopulationTableUsers(dataFromApi.Users);
         }
     }
 }

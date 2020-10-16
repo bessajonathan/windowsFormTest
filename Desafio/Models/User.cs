@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Desafio.Models
 {
@@ -10,6 +9,6 @@ namespace Desafio.Models
         public string Company { get; set; }
         public string Role { get; set; }
         public string Hash { get; set; }
-        public string HashDescription { get; set; }
+        public string HashDecrip { get; set; }
     }
 }

@@ -1,19 +1,16 @@
 ﻿using Desafio.Models;
 using Desafio.ViewModel;
-using System.Collections;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
 using System.Data.SQLite;
 using System.IO;
-using System.Windows.Forms;
+using System;
 
 namespace Desafio.Repository
 {
     public class Context
     {
         public readonly SQLiteConnection connection;
-
 
         public Context()
         {
@@ -26,7 +23,7 @@ namespace Desafio.Repository
                     SQLiteConnection.CreateFile("db.sqlite3");
                     CreateTable();
                 }
-                catch (System.Exception ex)
+                catch (Exception ex)
                 {
 
                     throw ex;
@@ -55,13 +52,13 @@ namespace Desafio.Repository
         {
             try
             {
-                var query = "CREATE TABLE Users (Id int,Nome varchar(50),Empresa varchar(50),Hash varchar(50),HashDescrip varchar(50))";
                 OpenConnection();
+                var query = "CREATE TABLE Users (Id int,Nome varchar(50),Empresa varchar(50),Hash varchar(50),HashDecrip varchar(50))";
                 SQLiteCommand command = new SQLiteCommand(query, connection);
                 command.ExecuteScalar();
                 CloseConnection();
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
 
                 throw ex;
@@ -89,7 +86,7 @@ namespace Desafio.Repository
                             Nome = result["Nome"].ToString(),
                             Empresa = result["Empresa"].ToString(),
                             Hash = result["Hash"].ToString(),
-                            HashDescription = result["HashDescrip"].ToString(),
+                            HashDecrip = result["HashDecrip"].ToString(),
 
                         });
                     }
@@ -99,7 +96,7 @@ namespace Desafio.Repository
 
                 return lst;
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
 
                 throw ex;
@@ -117,7 +114,7 @@ namespace Desafio.Repository
                 command.ExecuteScalar();
                 CloseConnection();
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
 
                 throw ex;
@@ -134,19 +131,19 @@ namespace Desafio.Repository
 
                 foreach (var users in lstUsers)
                 {
-                    var query = "INSERT INTO Users (Id,Nome,Empresa,Hash,HashDescrip) VALUES (@Id,@Nome,@Empresa,@Hash,@HashDescrip)";
+                    var query = "INSERT INTO Users (Id,Nome,Empresa,Hash,HashDecrip) VALUES (@Id,@Nome,@Empresa,@Hash,@HashDecrip)";
                     SQLiteCommand command = new SQLiteCommand(query, connection);
                     command.Parameters.AddWithValue("Id",users.Id);
                     command.Parameters.AddWithValue("Nome",users.Name);
                     command.Parameters.AddWithValue("Empresa",users.Company);
                     command.Parameters.AddWithValue("Hash",users.Hash);
-                    command.Parameters.AddWithValue("HashDescrip",users.HashDescription);
+                    command.Parameters.AddWithValue("HashDecrip", users.HashDecrip);
                     command.ExecuteNonQuery();
                 }
 
                 CloseConnection();
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
 
                 throw ex;

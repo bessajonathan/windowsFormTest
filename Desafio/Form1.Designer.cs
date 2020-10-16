@@ -34,13 +34,16 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtEmpresa = new System.Windows.Forms.TextBox();
             this.btnFiltrar = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnConsumirApi
             // 
-            this.btnConsumirApi.Location = new System.Drawing.Point(25, 25);
+            this.btnConsumirApi.Location = new System.Drawing.Point(29, 33);
+            this.btnConsumirApi.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnConsumirApi.Name = "btnConsumirApi";
-            this.btnConsumirApi.Size = new System.Drawing.Size(99, 29);
+            this.btnConsumirApi.Size = new System.Drawing.Size(113, 39);
             this.btnConsumirApi.TabIndex = 0;
             this.btnConsumirApi.Text = "Consumir Api";
             this.btnConsumirApi.UseVisualStyleBackColor = true;
@@ -49,58 +52,75 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(50, 83);
+            this.label1.Location = new System.Drawing.Point(57, 111);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(47, 15);
+            this.label1.Size = new System.Drawing.Size(59, 20);
             this.label1.TabIndex = 1;
             this.label1.Text = "Usuário";
             // 
             // txtUsuario
             // 
-            this.txtUsuario.Location = new System.Drawing.Point(121, 80);
+            this.txtUsuario.Location = new System.Drawing.Point(138, 107);
+            this.txtUsuario.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtUsuario.Name = "txtUsuario";
-            this.txtUsuario.Size = new System.Drawing.Size(100, 23);
+            this.txtUsuario.Size = new System.Drawing.Size(114, 27);
             this.txtUsuario.TabIndex = 2;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(237, 83);
+            this.label2.Location = new System.Drawing.Point(271, 111);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(52, 15);
+            this.label2.Size = new System.Drawing.Size(66, 20);
             this.label2.TabIndex = 3;
             this.label2.Text = "Empresa";
             // 
             // txtEmpresa
             // 
-            this.txtEmpresa.Location = new System.Drawing.Point(309, 80);
+            this.txtEmpresa.Location = new System.Drawing.Point(353, 107);
+            this.txtEmpresa.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtEmpresa.Name = "txtEmpresa";
-            this.txtEmpresa.Size = new System.Drawing.Size(171, 23);
+            this.txtEmpresa.Size = new System.Drawing.Size(195, 27);
             this.txtEmpresa.TabIndex = 2;
             // 
             // btnFiltrar
             // 
-            this.btnFiltrar.Location = new System.Drawing.Point(503, 80);
+            this.btnFiltrar.Location = new System.Drawing.Point(575, 107);
+            this.btnFiltrar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnFiltrar.Name = "btnFiltrar";
-            this.btnFiltrar.Size = new System.Drawing.Size(75, 23);
+            this.btnFiltrar.Size = new System.Drawing.Size(104, 31);
             this.btnFiltrar.TabIndex = 4;
             this.btnFiltrar.Text = "Filtrar";
             this.btnFiltrar.UseVisualStyleBackColor = true;
+            this.btnFiltrar.Click += new System.EventHandler(this.btnFiltrar_Click);
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(29, 164);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.Size = new System.Drawing.Size(683, 410);
+            this.dataGridView1.TabIndex = 5;
+            this.dataGridView1.Text = "dataGridView1";
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(871, 450);
+            this.ClientSize = new System.Drawing.Size(743, 600);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btnFiltrar);
             this.Controls.Add(this.txtEmpresa);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtUsuario);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnConsumirApi);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Form1";
             this.Text = "RestFy";
             this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -114,6 +134,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtEmpresa;
         private System.Windows.Forms.Button btnFiltrar;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }
 
